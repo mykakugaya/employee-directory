@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import logo from './logo.svg';
 import './App.css';
-import Wrapper from "./components/Wrapper"
+import Container from "./components/Container"
 import Header from "./components/Header";
-import Searchbar from "./components/Search";
+import Searchbar from "./components/Employee";
 import Main from "./components/Main";
 
 function App() {
   return (
-    <Wrapper>
-      < Header />
-      < Searchbar />
+    <Container>
+      < Header>Employee Directory</ Header>
       < Main />
-    </Wrapper>
+    </Container>
   ); 
 } 
 
