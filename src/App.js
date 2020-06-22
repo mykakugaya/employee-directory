@@ -1,20 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import logo from './logo.svg';
 import './App.css';
 import Container from "./components/Container"
 import Header from "./components/Header";
-import Searchbar from "./components/Employee";
-import Main from "./components/Main";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   return (
     <Container>
       < Header>Employee Directory</ Header>
-      < Main />
+      < SearchResults />
     </Container>
   ); 
 } 
-
-
 
 export default App;

@@ -1,25 +1,27 @@
 import React from "react";
 import "./style.css";
+import Row from "../Row.js";
+import Col from "../Col.js";
 
 function Employee(props) {
   return (
-    <div className="row employee" key={props.id}>
-      <div className="col-sm-1 image">
-        <img src={props.image} alt={props.name}></img>
-      </div>
-      <div className="col-sm-3 name">
-        <p>{props.name}</p>
-      </div>
-      <div className="col-sm-3 phone">
+    <Row className="row employee" key={props.id.value}>
+      <Col size="sm-1" className="image">
+        <img src={props.picture.thumbnail} alt={props.name.last}></img>
+      </Col>
+      <Col size="sm-3" className="name">
+        <p>{props.name.title} {props.name.first} {props.name.last}</p>
+      </Col>
+      <Col size="sm-3" className="phone">
         <p>{props.phone}</p>
-      </div>
-      <div className="col-sm-3 email">
+      </Col>
+      <Col size="sm-3" className="email">
         <p>{props.email}</p>
-      </div>
-      <div className="col-sm-2 dob">
-        <p>{props.dob}</p>
-      </div>
-    </div>
+      </Col>
+      <Col size="sm-2" className="dob">
+        <p>{props.dob.date}</p>
+      </Col>
+    </Row>
   );
 }
 
