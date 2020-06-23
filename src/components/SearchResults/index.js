@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
-import Employee from "../Employee/index.js";
-import Row from "../Row.js";
+import Employee from "../Employee";
+import Row from "../Row";
 import API from "../../utils/API.js";
 import ColNames from "../ColNames"
 
@@ -18,10 +18,6 @@ class SearchResults extends Component {
     searchEmployees = query => {
     API.search()
         .then(res => {
-            this.setState({
-                employees: res.data.results
-            })
-            console.log(res);
             if (query==="") {
                 this.setState({
                     employees: res.data.results
@@ -74,6 +70,7 @@ class SearchResults extends Component {
                     <ColNames/>
                     {this.state.employees.map(employee =>
                         <Employee
+                        key = {employee.id.value}
                         picture = {employee.picture}
                         name = {employee.name}
                         phone = {employee.phone}

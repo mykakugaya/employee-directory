@@ -1,11 +1,11 @@
 import React from "react";
 import "./style.css";
-import Row from "../Row.js";
+import Row from "../Row";
 import Col from "../Col.js";
 
 function Employee(props) {
   return (
-    <Row className="row employee" key={props.id}>
+    <Row className="employee">
       <Col size="sm-1" className="image">
         <img src={props.picture.thumbnail} alt={props.name.last}></img>
       </Col>
@@ -19,7 +19,7 @@ function Employee(props) {
         <p>{props.email}</p>
       </Col>
       <Col size="sm-2" className="dob">
-        <p>{props.dob.date}</p>
+        <p>{props.dob.date.slice(5,7) + "/" + props.dob.date.slice(8,10) + "/" + props.dob.date.slice(0, 4)}</p>
       </Col>
     </Row>
   );
