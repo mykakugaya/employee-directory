@@ -7,10 +7,12 @@ import SearchResults from "./components/SearchResults";
 
 function App() {
   return (
-    <Container>
+    <div>
       < Header>Employee Directory</ Header>
-      < SearchResults />
-    </Container>
+      <Container>
+        < SearchResults />
+      </Container>
+    </div>
   ); 
 } 
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Row from "../Row";
 import Col from "../Col";
+import "./style.css";
 
 function ColNames() {
     return (
@@ -17,7 +18,7 @@ function ColNames() {
             <Col size="sm-3" className="email">
                 <p>Email</p>
             </Col>
-            <Col size="sm-3" className="dob">
+            <Col size="sm-2" className="dob">
                 <p>DOB</p>
             </Col>
         </Row>

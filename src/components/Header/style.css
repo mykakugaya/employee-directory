@@ -1,3 +1,10 @@
 h1 {
     text-align: center;
+    color: white;
+}
+
+.header {
+    background-color: rgb(7, 7, 102);
+    height: 90px;
+    padding-top: 15px;
 }

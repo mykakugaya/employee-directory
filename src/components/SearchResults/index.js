@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./style.css";
 import Employee from "../Employee/index.js";
 import Row from "../Row.js";
-import Col from "../Col.js";
 import API from "../../utils/API.js";
 import ColNames from "../ColNames"
 
@@ -21,18 +20,18 @@ class SearchResults extends Component {
         .then(function(res) {
             if (query==="") {
                 this.setState({
-                    employees: res.results
+                    employees: res.data.results
                 })
             } else {
-                let searchResults = [];
-                for (let i=0; i<res.results.length; i++) {
-                    let fullName = res.results[i].name.first + " " + res.results[i].name.last;
+                let filterResults = [];
+                for (let i=0; i<res.data.results.length; i++) {
+                    let fullName = res.data.results[i].name.first + " " + res.data.results[i].name.last;
                     if (fullName.includes(query)) {
-                        searchResults += res.results[i];
+                        filterResults += res.data.results[i];
                     }
                 }
                 this.setState({
-                    employees: searchResults
+                    employees: filterResults
                 })
             }
         })
@@ -40,9 +39,10 @@ class SearchResults extends Component {
     };
 
     handleInputChange = event => {
-        let input = event.target.value;
+        let name = event.target.name;
+        let value = event.target.value;
         this.setState({
-            search: input
+            [name]: value
         });
     };
 
@@ -63,7 +63,7 @@ class SearchResults extends Component {
                             type="text"
                             placeholder="Search"
                         />
-                        <button className="btn btn-primary" onClick={this.handleFormSubmit}>Submit</button>
+                        <button className="btn btn-primary submitBtn" onClick={this.handleFormSubmit}>Submit</button>
                     </form>
                 </Row>
                 <div className="section">
