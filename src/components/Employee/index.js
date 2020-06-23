@@ -5,7 +5,7 @@ import Col from "../Col.js";
 
 function Employee(props) {
   return (
-    <Row className="row employee" key={props.id.value}>
+    <Row className="row employee" key={props.id}>
       <Col size="sm-1" className="image">
         <img src={props.picture.thumbnail} alt={props.name.last}></img>
       </Col>

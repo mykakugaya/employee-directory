@@ -17,7 +17,11 @@ class SearchResults extends Component {
 
     searchEmployees = query => {
     API.search()
-        .then(function(res) {
+        .then(res => {
+            this.setState({
+                employees: res.data.results
+            })
+            console.log(res);
             if (query==="") {
                 this.setState({
                     employees: res.data.results
