@@ -19,7 +19,7 @@ function Employee(props) {
         <p>{props.email}</p>
       </Col>
       <Col size="sm-2" className="dob">
-        <p>{props.dob.date.slice(5,7) + "/" + props.dob.date.slice(8,10) + "/" + props.dob.date.slice(0, 4)}</p>
+        <p>{props.dob.slice(5,7) + "/" + props.dob.slice(8,10) + "/" + props.dob.slice(0, 4)}</p>
       </Col>
     </Row>
   );

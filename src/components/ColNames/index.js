@@ -1,27 +1,26 @@
 import React from "react";
-import Row from "../Row";
 import Col from "../Col";
 import "./style.css";
 
-function ColNames() {
+function ColNames(props) {
     return (
-        <Row className="colnames">
+        <div className="row colnames">
             <Col size="sm-1" className="image">
-                <p>Image</p>
+                <strong><p>Image</p></strong>
             </Col>
             <Col size="sm-3" className="name">
-                <p>Name</p>
+                <strong><p>Name <i onClick={() => props.sort("fullname")} className="fas fa-sort"></i></p></strong>
             </Col>
             <Col size="sm-3" className="phone">
-                <p>Phone</p>
+                <strong><p>Phone <i onClick={() => props.sort("phone")} className="fas fa-sort"></i></p></strong>
             </Col>
             <Col size="sm-3" className="email">
-                <p>Email</p>
+                <strong><p>Email <i onClick={() => props.sort("email")} className="fas fa-sort"></i></p></strong>
             </Col>
             <Col size="sm-2" className="dob">
-                <p>DOB</p>
+                <strong><p>DOB <i onClick={() => props.sort("age")} className="fas fa-sort"></i></p></strong>
             </Col>
-        </Row>
+        </div>
     )
 }
 

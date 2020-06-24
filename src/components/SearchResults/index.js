@@ -1,42 +1,46 @@
 import React, { Component } from "react";
 import "./style.css";
 import Employee from "../Employee";
-import Row from "../Row";
 import API from "../../utils/API.js";
 import ColNames from "../ColNames"
 
 class SearchResults extends Component {
     state = {
         search: "",
-        employees: []
+        employees: [],
+        filteredEmployees: [],
+        order: 1
     }
 
     componentDidMount() {
         this.searchEmployees("");
     }
 
-    searchEmployees = query => {
+    searchEmployees() {
     API.search()
         .then(res => {
-            if (query==="") {
-                this.setState({
-                    employees: res.data.results
-                })
-            } else {
-                let filterResults = [];
-                for (let i=0; i<res.data.results.length; i++) {
-                    let fullName = res.data.results[i].name.first + " " + res.data.results[i].name.last;
-                    if (fullName.includes(query)) {
-                        filterResults += res.data.results[i];
-                    }
+            const modifiedUsers = res.data.results.map(a=> {
+                return {
+                    ...a,
+                    fullname: a.name.first + " " + a.name.last,
+                    age: a.dob.age,
+                    dob:a.dob.date
                 }
-                this.setState({
-                    employees: filterResults
-                })
-            }
+            })
+            this.setState({
+                employees: modifiedUsers,
+                filteredEmployees: modifiedUsers
+            })
         })
         .catch(err => console.log(err));
     };
+
+    filterResults(val) {
+        let filterResults = this.state.employees.filter(employee => employee.fullname.toLowerCase().includes(val.toLowerCase()));
+        this.setState({
+            filteredEmployees: filterResults
+        })
+    }
 
     handleInputChange = event => {
         let name = event.target.name;
@@ -44,6 +48,7 @@ class SearchResults extends Component {
         this.setState({
             [name]: value
         });
+        this.filterResults(value);
     };
 
     handleFormSubmit = event => {
@@ -51,10 +56,19 @@ class SearchResults extends Component {
         this.searchEmployees(this.state.search)
     };
 
+    handleSort = category => {
+        console.log(this.state, category)
+        const sorted = this.state.filteredEmployees.sort((a,b)=> a[category]<b[category] ? -1*this.state.order : a[category]>b[category] ? 1*this.state.order : 0)
+        this.setState({
+            filteredEmployees: sorted,
+            order: -this.state.order
+        })
+    }
+
     render() {
         return(
             <div className="main">
-                <Row>
+                <div className="row">
                     <form className="form">
                         <input
                             value={this.state.search}
@@ -65,10 +79,10 @@ class SearchResults extends Component {
                         />
                         <button className="btn btn-primary submitBtn" onClick={this.handleFormSubmit}>Submit</button>
                     </form>
-                </Row>
+                </div>
                 <div className="section">
-                    <ColNames/>
-                    {this.state.employees.map(employee =>
+                    <ColNames sort={this.handleSort}/>
+                    {this.state.filteredEmployees.map(employee =>
                         <Employee
                         key = {employee.id.value}
                         picture = {employee.picture}

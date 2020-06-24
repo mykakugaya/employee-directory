@@ -6,6 +6,8 @@
 
 .submitBtn {
     margin-left: 5px;
+    background-color: rgb(7, 7, 102);
+    border: none;
 }
 
 .results tr:nth-child(odd) {

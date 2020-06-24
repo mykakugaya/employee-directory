@@ -1,0 +1,12 @@
+i {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    margin-left: 3px;
+    background-color: rgb(7, 7, 102);
+    color: white;
+}
+
+i:hover {
+    background-color: #007bff;
+}
